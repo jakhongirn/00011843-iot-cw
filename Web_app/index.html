@@ -1,0 +1,66 @@
+<!-- Complete Project Details at: https://RandomNerdTutorials.com/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NodeMCU IoT Firebase App</title>
+
+    <!-- update the version number as needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+
+    <script>
+     
+     const firebaseConfig = {
+    apiKey: "AIzaSyDXXxFL03802VQC9onjWHIhcq1BZNwgxKM",
+    authDomain: "iot-pro-a1acb.firebaseapp.com",
+    databaseURL: "https://iot-pro-a1acb-default-rtdb.firebaseio.com",
+    projectId: "iot-pro-a1acb",
+    storageBucket: "iot-pro-a1acb.appspot.com",
+    messagingSenderId: "341808269201",
+    appId: "1:341808269201:web:851aa561d41f27932a7c30",
+    measurementId: "G-TR68WWTL8W"
+  };
+
+      // Initialize firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Make auth and database references
+      const auth = firebase.auth();
+      const db = firebase.database();
+
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <!--TOP BAR-->
+  <div class="topnav">
+    <h1>Polutry Farm App <i class="fas fa-clipboard-list"></i></h1>
+  </div>
+
+  <!--CONTENT (SENSOR READINGS)-->
+  <div class="content-sign-in" id="content-sign-in" style="display: none;">
+    <div class="cards">
+      <!--TEMPERATURE-->
+      <div class="card">
+        <p><i class="fas fa-thermometer-half" style="color:#059e8a;"></i> TEMPERATURE</p>
+        <p><span class="reading"><span id="temp"></span> &deg;C</span></p>
+      </div>
+      <!--HUMIDITY-->
+      <div class="card">
+        <p><i class="fas fa-tint" style="color:#00add6;"></i> HUMIDITY</p>
+        <p><span class="reading"><span id="hum"></span> &percnt;</span></p>
+      </div>
+    
+    </div>
+  </div>
+    <script src="scripts/index.js"></script>
+  </body>
+</html>
