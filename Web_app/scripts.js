@@ -22,9 +22,9 @@ firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
   //getting reference to the data we want
-  var dataRef1 = database.ref('temp');
-  var dataRef2 = database.ref('humid');
-  var dataRef3 = database.ref('led');
+  var dataRef1 = database.ref('humid');
+  var dataRef2 = database.ref('temp');
+  var dataRef3 = database.ref('FAN');
 
   //fetch the data
   dataRef1.on('value', function(getdata1){
@@ -40,16 +40,16 @@ firebase.initializeApp(firebaseConfig);
 
 
 var index=0;
-var btn=document.getElementById("led");
+var btn=document.getElementById("FAN");
 
 function press() {
 index++;
 if (index%2==1) {
-database.ref('LED').set("1");
-document.getElementById('led').innerHTML="turn off";
+database.ref('FAN').set("1");
+document.getElementById('FAN').innerHTML="turn off";
 }
 else {
-database.ref('LED').set("0");
-document.getElementById('led').innerHTML="turn on";
+database.ref('FAN').set("0");
+document.getElementById('FAN').innerHTML="turn on";
 }
 }
