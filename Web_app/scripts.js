@@ -1,53 +1,55 @@
-const contentElement = document.querySelector("#content-sign-in");
 
-// Elements for sensor readings
-const tempElement = document.getElementById("temp");
-const humElement = document.getElementById("hum");
-const presElement = document.getElementById("pres");
+const firebaseConfig = {
+  apiKey: "AIzaSyDXXxFL03802VQC9onjWHIhcq1BZNwgxKM",
+  authDomain: "iot-pro-a1acb.firebaseapp.com",
+  databaseURL: "https://iot-pro-a1acb-default-rtdb.firebaseio.com",
+  projectId: "iot-pro-a1acb",
+  storageBucket: "iot-pro-a1acb.appspot.com",
+  messagingSenderId: "341808269201",
+  appId: "1:341808269201:web:851aa561d41f27932a7c30",
+  measurementId: "G-TR68WWTL8W"
+};
 
-// MANAGE LOGIN/LOGOUT UI
-const setupUI = (user) => {
-  if (user) {
-    //toggle UI elements
-    loginElement.style.display = 'none';
-    contentElement.style.display = 'block';
-    authBarElement.style.display ='block';
-    userDetailsElement.style.display ='block';
-    userDetailsElement.innerHTML = user.email;
 
-    // get user UID to get data from database
-    var uid = user.uid;
-    console.log(uid);
+// Initialize Firebase
 
-    // Database paths (with user UID)
-    var dbPathTemp = 'UsersData/' + uid.toString() + '/temperature';
-    var dbPathHum = 'UsersData/' + uid.toString() + '/humidity';
-    var dbPathPres = 'UsersData/' + uid.toString() + '/pressure';
+//const app = initializeApp(firebaseConfig);
 
-    // Database references
-    var dbRefTemp = firebase.database().ref().child(dbPathTemp);
-    var dbRefHum = firebase.database().ref().child(dbPathHum);
-    var dbRefPres = firebase.database().ref().child(dbPathPres);
+//const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
 
-    // Update page with new readings
-    dbRefTemp.on('value', snap => {
-      tempElement.innerText = snap.val().toFixed(2);
-    });
+  // getting reference to the database
+  var database = firebase.database();
 
-    dbRefHum.on('value', snap => {
-      humElement.innerText = snap.val().toFixed(2);
-    });
+  //getting reference to the data we want
+  var dataRef1 = database.ref('temp');
+  var dataRef2 = database.ref('humid');
+  var dataRef3 = database.ref('led');
 
-    dbRefPres.on('value', snap => {
-      presElement.innerText = snap.val().toFixed(2);
-    });
+  //fetch the data
+  dataRef1.on('value', function(getdata1){
+    var humi = getdata1.val();
+    document.getElementById('humidity').innerHTML = humi + "%";
+  })
 
-  // if user is logged out
-  } else{
-    // toggle UI elements
-    loginElement.style.display = 'block';
-    authBarElement.style.display ='none';
-    userDetailsElement.style.display ='none';
-    contentElement.style.display = 'none';
-  }
+   dataRef2.on('value', function(getdata2){
+    var temp = getdata2.val();
+    document.getElementById('temperature').innerHTML = temp + "&#8451;";
+  })
+
+
+
+var index=0;
+var btn=document.getElementById("led");
+
+function press() {
+index++;
+if (index%2==1) {
+database.ref('LED').set("1");
+document.getElementById('led').innerHTML="turn off";
+}
+else {
+database.ref('LED').set("0");
+document.getElementById('led').innerHTML="turn on";
+}
 }

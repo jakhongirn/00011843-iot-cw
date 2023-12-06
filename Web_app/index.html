@@ -1,66 +1,103 @@
-<!-- Complete Project Details at: https://RandomNerdTutorials.com/ -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NodeMCU IoT Firebase App</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DHT Readings</title>
+	<style type="text/css">
+		body{
+			background-color: #F5F5F5;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		.data-container{
+			display: flex;
+			justify-content: space-between;
+			width: 50%;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #FFF;
+			box-shadow: 0 2px 20px rgba(0, 0, 0,0.1);
+			border-radius: 10px;
+		}
 
-    <!-- update the version number as needed -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+		.data-item{
+			text-align: center;
+		}
 
-    <!-- include only the Firebase features as you need -->
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+		.data-item h2{
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
 
-    <script>
-     
-     const firebaseConfig = {
-    apiKey: "AIzaSyDXXxFL03802VQC9onjWHIhcq1BZNwgxKM",
-    authDomain: "iot-pro-a1acb.firebaseapp.com",
-    databaseURL: "https://iot-pro-a1acb-default-rtdb.firebaseio.com",
-    projectId: "iot-pro-a1acb",
-    storageBucket: "iot-pro-a1acb.appspot.com",
-    messagingSenderId: "341808269201",
-    appId: "1:341808269201:web:851aa561d41f27932a7c30",
-    measurementId: "G-TR68WWTL8W"
-  };
+		.data-item p{
+			font-size: 48px;
+			font-weight: bold;
+			color: #6EB7FF;
+		}
 
-      // Initialize firebase
-      firebase.initializeApp(firebaseConfig);
+		.data-head{
+			margin: auto;
+			width: 50%;
+			text-align: center;
+			font-size: 45px;
+			font-weight: bold;
+			margin: 50px auto;
+			padding: 20px;
+			background-color: #FFF;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+			border-radius: 20px;
 
-      // Make auth and database references
-      const auth = firebase.auth();
-      const db = firebase.database();
 
-    </script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" type="text/css" href="style.css">
+		}
+
+
+
+	</style>
 </head>
-
 <body>
-  <!--TOP BAR-->
-  <div class="topnav">
-    <h1>Polutry Farm App <i class="fas fa-clipboard-list"></i></h1>
-  </div>
 
-  <!--CONTENT (SENSOR READINGS)-->
-  <div class="content-sign-in" id="content-sign-in" style="display: none;">
-    <div class="cards">
-      <!--TEMPERATURE-->
-      <div class="card">
-        <p><i class="fas fa-thermometer-half" style="color:#059e8a;"></i> TEMPERATURE</p>
-        <p><span class="reading"><span id="temp"></span> &deg;C</span></p>
-      </div>
-      <!--HUMIDITY-->
-      <div class="card">
-        <p><i class="fas fa-tint" style="color:#00add6;"></i> HUMIDITY</p>
-        <p><span class="reading"><span id="hum"></span> &percnt;</span></p>
-      </div>
-    
-    </div>
-  </div>
-    <script src="scripts/index.js"></script>
-  </body>
+	<div class="data-head">DHT Sensor Realtime Readings</div>
+
+	<div class="data-container">
+		<div class="data-item">
+			<h2>Temperature</h2>
+			<p class="value" id="temperature">22 &#8451;</p>
+		</div>
+		<div class="data-item">
+			<h2>FAN</h2>
+			<button onclick="press()" id="led">Turn on</button>
+
+		</div>
+		<div class="data-item">
+			<h2>Humidity</h2>
+			<p class="value" id="humidity">10%</p>
+		</div>
+
+
+	</div>
+
+	<!-- the scripts for products you want to access must be added-->
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+
+	<script type="module">
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-analytics.js";
+
+
+</script>
+<script type="text/javascript">
+
+
+
+</script>
+<script type="text/javascript" src="scripts.js"></script>
+</body>
 </html>
